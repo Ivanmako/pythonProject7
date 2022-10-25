@@ -6,7 +6,7 @@ for i in range(n):
     temp = [int(num) for num in input().split()]
     matrix.append(temp)
 
-a = [matrix[j][k] for k in range(n) for j in range(n) if j < k and j < n - 1 - k]
+a = [matrix[j][k] ddddfor k in range(n) for j in range(n) if j < k and j < n - 1 - k]
 b = [matrix[j][k] for k in range(n) for j in range(n) if j < k and j > n - 1 - k]
 c = [matrix[j][k] for k in range(n) for j in range(n) if j > k and j > n - 1 - k]
 d = [matrix[j][k] for k in range(n) for j in range(n) if j > k and j < n - 1 - k]
