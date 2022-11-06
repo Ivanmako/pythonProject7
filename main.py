@@ -1,10 +1,15 @@
-rows, cols = 3, 4           # rows - количество строк, cols - количество столбцов
+n = input()
+x = int('abcdefgh'.find(n[0]))
+y = int('87654321'.find(n[1]))
+matrix = [['.' for _ in range(8)] for _ in range(8)]
 
-matrix  = [[2, 3, 1, 0],
-           [9, 4, 6, 8],
-           [4, 7, 2, 7]]
+matrix[x + 1][y] = 'N'
+for k in range(8):
+    for l in range(8):
+        if (y-l)*(x-k)==2 or (y-l)*(x-k)==-2:
+            matrix[k][l] = '*'
 
-for c in range(cols):
-    for r in range(rows):
-        print(matrix[r][c], end=' ')
+for i in matrix:
+    for j in i:
+        print(j, end=' ')
     print()

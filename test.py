@@ -1,13 +1,42 @@
 n = int(input())
-matrix = []
+matrix = [[int(num) for num in input().split()] for _ in range(n)]
+
+def check(): #Функция проверки списка на наличие всех чисел
+    check_list = []
+    matrix_num = [i for i in range(1, (n ** 2) + 1)]
+    for i in range(n):
+        for j in range(n):
+            check_list.append(matrix[i][j])
+    check_list.sort()
+    if check_list == matrix_num:
+        return True
+    else:
+        return False
+
+def magick():
+    matrix_magik = []
+    for i in range(n):#Цикл добавления суммы элемантов по строкам
+        matrix_magik.append(sum(matrix[i]))
+
+    for j in range(n): #Цикл добавления суммы элемантов по столбцам
+        elem = [matrix[k][j] for k in range(n)]
+        matrix_magik.append(sum(elem))
+
+    matrix_magik.append(sum([matrix[l][l] for l in range(n)])) #добавления суммы элемантов по главной диагонали
+    matrix_magik.append(sum([matrix[h][n - h - 1] for h in range(n)])) #добавления суммы элемантов по второстепенной диагонали
+
+    if exam_num(matrix_magik) and check():
+        return 'YES'
+    else:
+        return 'NO'
+
+def exam_num(matrix_magick):
+    for i in range(1, len(matrix_magick)):
+         if matrix_magick[i] != matrix_magick[i - 1]:
+             return False
+    return True
 
 
-for i in range(n):
-    temp = [int(num) for num in input().split()]
-    matrix.append(temp)
+print(magick())
 
-a = [matrix[j][k] ddddfor sck in range(n) for j in range(n) if j < k and j < n - 1 - k]
-b = [matrix[j][k] for k in range(n) for j in range(n) if j < k and j > n - 1 - k]
-c = [matrix[j][k] for k in range(n) for j in range(n) if j > k and j > n - 1 - k]
-d = [matrix[j][k] for k in range(n) for j in range(n) if j > k and j < n - 1 - k]
-print(f'Верхняя четверть: {sum(a)}', f'Правая четверть: {sum(b)}', f'Нижняя четверть: {sum(c)}', f'Левая четверть: {sum(d)}', sep='\n')
+
